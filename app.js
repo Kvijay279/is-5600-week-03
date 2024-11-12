@@ -41,7 +41,7 @@ function respondSSE (req, res) {
     'Connection': 'keep-alive',
   });
 
-  const onMessage = message => res.write(data: ${message}\n\n); 
+  const onMessage = message => res.write(`data: ${message}\n\n`); 
   chatEmitter.on('message', onMessage);
   res.on('close', () => {
     chatEmitter.off('message', onMessage);
@@ -53,5 +53,5 @@ app.get('/', chatApp);
 app.get('/chat', respondChat);
 app.get('/sse', respondSSE);
 app.listen(port, () => {
-  console.log('Listening on port ${port}');
+  console.log(`Listening on port ${port}`);
 });
